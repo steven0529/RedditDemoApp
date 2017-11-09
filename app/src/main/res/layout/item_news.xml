@@ -6,16 +6,27 @@
     android:orientation="horizontal"
     android:padding="5dip">
 
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textColor="#040404"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="sans"
+        android:maxLength="6"
+        tools:text="1224" />
+
     <ImageView
         android:id="@+id/iv_thumbnail"
-        android:layout_width="50dip"
-        android:layout_height="50dip"
+        android:layout_width="65dip"
+        android:layout_height="65dip"
         android:layout_marginBottom="5dp"
+        android:layout_toRightOf="@+id/tv_score"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp" />
-
-    <!-- Description -->
 
     <TextView
         android:id="@+id/tv_desc"
@@ -41,21 +52,6 @@
         tools:ignore="SmallSp"
         tools:text="Author 123" />
 
-    <TextView
-        android:id="@+id/tv_comments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tv_author"
-        android:layout_alignRight="@+id/tv_author"
-        android:layout_below="@+id/tv_desc"
-        android:gravity="right"
-        android:textColor="#10bcc9"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        tools:ignore="SmallSp"
-        tools:text="30012 comments" />
-
-    <!-- Time -->
 
     <TextView
         android:id="@+id/tv_relative_time"
@@ -69,4 +65,16 @@
         tools:ignore="SmallSp"
         tools:text="12 hours ago" />
 
+    <TextView
+        android:id="@+id/tv_comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_author"
+        android:layout_alignLeft="@+id/tv_author"
+        android:layout_below="@+id/tv_relative_time"
+        android:textColor="#10bcc9"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        tools:ignore="SmallSp"
+        tools:text="30012 comments" />
 </RelativeLayout>

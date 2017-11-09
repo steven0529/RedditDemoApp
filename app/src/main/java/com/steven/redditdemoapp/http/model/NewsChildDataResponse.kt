@@ -12,6 +12,7 @@ class NewsChildDataResponse(
         val created: Long,
         val thumbnail: String,
         val url: String,
+        val score: Int,
         val subreddit: String,
         val body: String
 )

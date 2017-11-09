@@ -1,6 +1,8 @@
 package com.steven.redditdemoapp.list
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.chuck.keddit.news.adapter.NewsAdapter
 import com.steven.redditdemoapp.R
@@ -28,8 +30,11 @@ class NewsActivity : BaseMvpActivity<NewsView, NewsPresenter>(), NewsView {
         }
         rvPosts.setHasFixedSize(true) // use this setting to improve performance
         var llManager = LinearLayoutManager(this)
-        rv_posts.layoutManager = llManager;
-        rv_posts.addOnScrollListener(LoadMoreListener( {loadMoreNews() }, llManager))
+        rvPosts.layoutManager = llManager;
+        rvPosts.addOnScrollListener(LoadMoreListener( {loadMoreNews() }, llManager))
+        var itemDecoration: DividerItemDecoration = DividerItemDecoration(this, llManager.orientation)
+        itemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.list_divider))
+        rvPosts.addItemDecoration(itemDecoration)
     }
 
     override fun onResume() {

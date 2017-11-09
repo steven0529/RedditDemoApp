@@ -30,9 +30,10 @@ class SimpleNewsDelegateAdapter : ViewTypeDelegateAdapter {
             parent.inflate(R.layout.item_news)) {
 
         fun bind(item: NewsItem) = with(itemView) {
+            tv_score.text = "${item.score}"
             iv_thumbnail.loadImg(item.thumbnail)
             tv_desc.text = item.title
-            tv_author.text = item.author
+            tv_author.text = "submitted by ${item.author}"
 
             if (item.numComments == 1)
                 tv_comments.text = "${item.numComments} comment"

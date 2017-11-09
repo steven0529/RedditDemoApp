@@ -19,7 +19,7 @@ class NewsPresenter: BaseMvpPresenterImpl<NewsView>() {
                             val news = redditResponse.data.children.map {
                                 val item = it.data
                                 NewsItem(item.author, item.title, item.num_comments,
-                                        item.created, item.thumbnail, item.url)
+                                        item.created, item.thumbnail, item.url, item.score)
                             }
 
                             val redditNews = NewsList(redditResponse.data.after ?: "",
