@@ -1,29 +1,54 @@
 package com.steven.redditdemoapp.list
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.chuck.keddit.news.adapter.NewsAdapter
 import com.steven.redditdemoapp.R
+import com.steven.redditdemoapp.base.BaseMvpActivity
+import com.steven.redditdemoapp.list.util.LoadMoreListener
 import com.steven.redditdemoapp.model.NewsList
 import kotlinx.android.synthetic.main.activity_main.*
 
-class NewsActivity : AppCompatActivity(), NewsView {
+class NewsActivity : BaseMvpActivity<NewsView, NewsPresenter>(), NewsView {
+
+    val LIMIT = "10"
 
     private val rvPosts by lazy {
         rv_posts
     }
 
-    private var redditNewsList: NewsList? = null
+    private var mRedditNewsList: NewsList? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (rvPosts.adapter == null) {
+            rvPosts.adapter = NewsAdapter()
+        }
+        rvPosts.setHasFixedSize(true) // use this setting to improve performance
         var llManager = LinearLayoutManager(this)
         rv_posts.layoutManager = llManager;
+        rv_posts.addOnScrollListener(LoadMoreListener( {loadMoreNews() }, llManager))
     }
 
-    override fun displayNewsList(newsList: NewsList) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onResume() {
+        super.onResume()
+        mPresenter.loadNews("0", "10")
     }
+
+    override var mPresenter: NewsPresenter = NewsPresenter()
+
+    override fun displayNewsList(newsList: NewsList) {
+        this.mRedditNewsList = newsList
+        (rvPosts.adapter as NewsAdapter).addNews(newsList.news)
+        rvPosts.adapter.notifyDataSetChanged()
+    }
+
+    private fun loadMoreNews() {
+        mRedditNewsList?.after?.let {
+            mPresenter.loadNews(mRedditNewsList!!.after, LIMIT )
+        }
+    }
+
 }
