@@ -1,8 +1,9 @@
-package com.steven.redditdemoapp
+package com.steven.redditdemoapp.list
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.steven.redditdemoapp.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class NewsActivity : AppCompatActivity() {
