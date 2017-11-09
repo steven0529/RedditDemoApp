@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import com.chuck.keddit.commons.ViewType
 import com.chuck.keddit.commons.ViewTypeDelegateAdapter
 import com.steven.redditdemoapp.R
+import com.steven.redditdemoapp.commons.extensions.getDisplayScore
 import com.steven.redditdemoapp.commons.extensions.getRelativeTime
 import com.steven.redditdemoapp.commons.extensions.inflate
 import com.steven.redditdemoapp.commons.extensions.loadImg
@@ -30,7 +31,7 @@ class SimpleNewsDelegateAdapter : ViewTypeDelegateAdapter {
             parent.inflate(R.layout.item_news)) {
 
         fun bind(item: NewsItem) = with(itemView) {
-            tv_score.text = "${item.score}"
+            tv_score.text = item.score.getDisplayScore(item.score)
             iv_thumbnail.loadImg(item.thumbnail)
             tv_desc.text = item.title
             tv_author.text = "submitted by ${item.author}"

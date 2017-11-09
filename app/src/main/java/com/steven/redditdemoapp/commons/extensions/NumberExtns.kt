@@ -1,10 +1,25 @@
 package com.steven.redditdemoapp.commons.extensions
 
+import java.text.DecimalFormat
 import java.util.*
 
 /**
  * Created by Steven Reyes on 09/11/2017
  */
+fun Int.getDisplayScore(score: Int): String {
+    var display: String
+    if (score > 99999) {
+        val scoreDivided = score / 1000.0
+        var df : DecimalFormat = DecimalFormat("#")
+        display = "${df.format(scoreDivided)}k"
+    } else if (score > 9999) {
+        val scoreDivided = score / 1000.0
+        var df : DecimalFormat = DecimalFormat("#.0")
+        display = "${df.format(scoreDivided)}k"
+    } else
+        display = "${score}"
+    return (display)
+}
 
 fun Long.getRelativeTime(): String {
     val dateTime = Date(this * 1000)
