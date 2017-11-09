@@ -6,7 +6,7 @@ import java.util.*
  * Created by Steven Reyes on 09/11/2017
  */
 
-fun Long.getFriendlyTime(): String {
+fun Long.getRelativeTime(): String {
     val dateTime = Date(this * 1000)
     val sb = StringBuffer()
     val current = Calendar.getInstance().time
