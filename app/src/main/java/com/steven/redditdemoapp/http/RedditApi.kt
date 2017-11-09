@@ -1,6 +1,6 @@
 package com.steven.redditdemoapp.http
 
-import com.steven.redditdemoapp.http.model.RedditNewsResponse
+import com.steven.redditdemoapp.http.model.NewsBaseResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,6 +12,6 @@ import retrofit2.http.Query
 interface RedditApi {
 
     @GET("/top.json")
-    fun getTopArticles(@Query("after") after: String, @Query("limit") limit: String) : Observable<RedditNewsResponse>
+    fun getTopArticles(@Query("after") after: String, @Query("limit") limit: String) : Observable<NewsBaseResponse>
 
 }
