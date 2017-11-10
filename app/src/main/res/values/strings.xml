@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Reddit Demo App</string>
+    <string name="created_by">Created by</string>
+    <string name="author">Steven Francis Reyes</string>
 </resources>
