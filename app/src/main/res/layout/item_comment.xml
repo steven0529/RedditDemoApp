@@ -1,51 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#343434"
-                android:layout_alignParentLeft="true"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                tools:ignore="SmallSp" />
-
-            <TextView
-                android:id="@+id/tv_relative_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#343434"
-                android:textStyle="italic"
-                android:layout_alignParentRight="true"
-                android:textSize="14sp"
-                tools:ignore="SmallSp" />
-
-        </RelativeLayout>
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="4dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_body"
-            android:layout_width="fill_parent"
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:textColor="#343434"
-            android:textSize="12sp"
+            android:textSize="14sp"
+            android:textStyle="bold"
             tools:ignore="SmallSp" />
 
-    </LinearLayout>
-</ScrollView>
+        <TextView
+            android:id="@+id/tv_relative_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="#343434"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            tools:ignore="SmallSp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_body"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#343434"
+        android:layout_margin="5dp"
+        android:textSize="12sp"
+        tools:ignore="SmallSp" />
+
+</LinearLayout>

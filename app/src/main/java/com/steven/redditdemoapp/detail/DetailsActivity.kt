@@ -38,6 +38,8 @@ class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), Details
         setContentView(R.layout.activity_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        rvComments.isNestedScrollingEnabled = false;
+
         if (intent.extras.getString(EXTRA_SUBREDDIT) != null
                 && intent.extras.getString(EXTRA_ARTICLE_ID) != null) {
             subreddit = intent.extras.getString(EXTRA_SUBREDDIT)
