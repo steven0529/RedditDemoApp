@@ -1,12 +1,16 @@
 package com.steven.redditdemoapp.detail
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.steven.redditdemoapp.R
 import com.steven.redditdemoapp.base.BaseMvpActivity
 import com.steven.redditdemoapp.commons.extensions.getDisplayScore
 import com.steven.redditdemoapp.commons.extensions.getRelativeTime
 import com.steven.redditdemoapp.commons.extensions.loadImg
+import com.steven.redditdemoapp.detail.adapter.CommentsAdapter
 import com.steven.redditdemoapp.model.CommentList
 import com.steven.redditdemoapp.model.NewsItem
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -65,5 +69,18 @@ class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), Details
     }
 
     override fun displayComments(commentList: CommentList) {
+        if (rvComments.adapter == null) {
+            rvComments.adapter = CommentsAdapter(commentList.data.toMutableList())
+        }
+
+        rvComments.setHasFixedSize(true) // use this setting to improve performance
+        var llManager = LinearLayoutManager(this)
+        rvComments.layoutManager = llManager;
+        var itemDecoration = DividerItemDecoration(this, llManager.orientation)
+        itemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.list_divider))
+        rvComments.addItemDecoration(itemDecoration)
+
+        (rvComments.adapter as CommentsAdapter).addComments(commentList.data)
+        rvComments.adapter.notifyDataSetChanged()
     }
 }
