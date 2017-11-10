@@ -96,4 +96,11 @@ class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), Details
         (rvComments.adapter as CommentsAdapter).addComments(commentList.data)
         rvComments.adapter.notifyDataSetChanged()
     }
+
+    override fun showError() {
+        tv_failed_to_load.visibility = View.VISIBLE
+        container.visibility = View.GONE
+        rvComments.visibility = View.GONE
+        loader.visibility = View.GONE
+    }
 }

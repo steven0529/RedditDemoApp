@@ -2,4 +2,6 @@
     <string name="app_name">Reddit Demo App</string>
     <string name="created_by">Created by</string>
     <string name="author">Steven Francis Reyes</string>
+    <string name="failed_to_load_posts">Failed to load posts</string>
+    <string name="failed_to_load_details">Failed to load details</string>
 </resources>

@@ -10,4 +10,5 @@ interface NewsView: BaseMvpView {
 
     fun displayNewsList(newsList: NewsList)
 
+    fun showError()
 }

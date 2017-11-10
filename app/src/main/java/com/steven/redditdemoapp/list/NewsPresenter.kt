@@ -30,5 +30,9 @@ class NewsPresenter : BaseMvpPresenterImpl<NewsView>() {
 
                     }
                 })
+                { throwable ->
+                    mView?.showError()
+                    throwable.printStackTrace()
+                }
     }
 }

@@ -10,6 +10,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tv_failed_to_load"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="@string/failed_to_load_details"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:typeface="sans"/>
+
         <ProgressBar
             android:id="@+id/loader"
             android:layout_width="50dp"
@@ -17,6 +28,7 @@
             android:layout_gravity="center" />
 
         <LinearLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

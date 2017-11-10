@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.chuck.keddit.news.adapter.NewsAdapter
 import com.steven.redditdemoapp.R
 import com.steven.redditdemoapp.base.BaseMvpActivity
 import com.steven.redditdemoapp.list.util.LoadMoreListener
-import com.steven.redditdemoapp.model.NewsItem
 import com.steven.redditdemoapp.model.NewsList
+import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class NewsActivity : BaseMvpActivity<NewsView, NewsPresenter>(), NewsView {
@@ -57,4 +58,8 @@ class NewsActivity : BaseMvpActivity<NewsView, NewsPresenter>(), NewsView {
         }
     }
 
+    override fun showError() {
+        tv_failed_to_load_posts.visibility = View.VISIBLE
+        rvPosts.visibility = View.GONE
+    }
 }

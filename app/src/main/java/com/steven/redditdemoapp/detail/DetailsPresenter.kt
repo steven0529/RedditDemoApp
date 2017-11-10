@@ -45,5 +45,9 @@ class DetailsPresenter : BaseMvpPresenterImpl<DetailsView>() {
                         }
                     }
                 })
+                { throwable ->
+                    mView?.showError()
+                    throwable.printStackTrace()
+                }
     }
 }

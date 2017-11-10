@@ -13,4 +13,5 @@ interface DetailsView : BaseMvpView {
 
     fun displayComments(commentList: CommentList)
 
+    fun showError()
 }
