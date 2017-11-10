@@ -15,7 +15,8 @@ data class NewsItem(
         val url: String,
         val score: Int,
         val subreddit: String,
-        val id: String
+        val id: String,
+        val bigImageUrl: String
 ) : ViewType {
     override fun getViewType() = NewsAdapterConstants.NEWS
 }

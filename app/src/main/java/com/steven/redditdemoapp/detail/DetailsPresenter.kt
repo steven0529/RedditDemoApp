@@ -19,9 +19,14 @@ class DetailsPresenter : BaseMvpPresenterImpl<DetailsView>() {
                     for (redditResponse in redditArrayResponse) {
                         if (redditResponse.data.children[0].kind == PrefixType.LINK) {
                             val item = redditArrayResponse[0].data.children[0].data
+                            var imageUrl = ""
+
+                            if (item.preview != null && item.preview.images[0].source.url != null)
+                                imageUrl = item.preview.images[0].source.url
+
                             val newsItem = NewsItem(item.author, item.title!!, item.num_comments!!,
                                     item.created, item.thumbnail!!, item.url!!, item.score!!,
-                                    item.subreddit!!, item.id)
+                                    item.subreddit!!, item.id, imageUrl)
                             mView?.displayDetail(newsItem)
                         } else if (redditResponse.data.children[0].kind == PrefixType.COMMENTS) {
                             var comments: MutableList<CommentItem> = mutableListOf()

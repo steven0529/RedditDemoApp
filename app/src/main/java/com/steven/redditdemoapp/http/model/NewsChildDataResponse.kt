@@ -14,5 +14,6 @@ class NewsChildDataResponse(
         val url: String?,
         val score: Int?,
         val subreddit: String?,
-        val body: String?
+        val body: String?,
+        val preview: NewsChildPreviewResponse
 )

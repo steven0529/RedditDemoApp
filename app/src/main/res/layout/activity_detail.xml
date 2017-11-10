@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -62,12 +62,19 @@
         <ImageView
             android:id="@+id/iv_thumbnail"
             android:layout_width="match_parent"
-            android:layout_height="200dip"
+            android:layout_height="275dip"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_color"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
 
     </LinearLayout>
 

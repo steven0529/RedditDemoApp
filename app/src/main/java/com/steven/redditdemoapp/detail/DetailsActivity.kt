@@ -1,6 +1,7 @@
 package com.steven.redditdemoapp.detail
 
 import android.os.Bundle
+import android.view.View
 import com.steven.redditdemoapp.R
 import com.steven.redditdemoapp.base.BaseMvpActivity
 import com.steven.redditdemoapp.commons.extensions.getDisplayScore
@@ -54,7 +55,11 @@ class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), Details
         else
             tv_comments.text = "${newsItem.numComments} comments"
         tv_submitted_by.text = "submitted ${newsItem.created.getRelativeTime()} by ${newsItem.author}"
-        iv_thumbnail.loadImg(newsItem.thumbnail)
+
+        if (newsItem.bigImageUrl == "")
+            iv_thumbnail.visibility = View.GONE
+        else
+            iv_thumbnail.loadImg(newsItem.bigImageUrl)
     }
 
     override fun displayComments(commentList: CommentList) {
