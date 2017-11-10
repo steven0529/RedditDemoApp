@@ -8,6 +8,7 @@ import com.chuck.keddit.news.adapter.NewsAdapter
 import com.steven.redditdemoapp.R
 import com.steven.redditdemoapp.base.BaseMvpActivity
 import com.steven.redditdemoapp.list.util.LoadMoreListener
+import com.steven.redditdemoapp.model.NewsItem
 import com.steven.redditdemoapp.model.NewsList
 import kotlinx.android.synthetic.main.activity_main.*
 
