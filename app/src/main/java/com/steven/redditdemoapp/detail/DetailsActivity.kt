@@ -65,6 +65,7 @@ class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), Details
     override var mPresenter: DetailsPresenter = DetailsPresenter()
 
     override fun displayDetail(newsItem: NewsItem) {
+        container.visibility = View.VISIBLE
         loader.visibility = View.GONE
         iv_divider.visibility = View.VISIBLE
         tv_score.text = newsItem.score.getDisplayScore(newsItem.score)
