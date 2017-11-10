@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.view.MenuItem
 import android.view.View
 import com.steven.redditdemoapp.R
 import com.steven.redditdemoapp.base.BaseMvpActivity
@@ -35,6 +36,8 @@ class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), Details
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         if (intent.extras.getString(EXTRA_SUBREDDIT) != null
                 && intent.extras.getString(EXTRA_ARTICLE_ID) != null) {
             subreddit = intent.extras.getString(EXTRA_SUBREDDIT)
@@ -47,6 +50,14 @@ class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), Details
         if (subreddit != null && id != null) {
                 mPresenter.loadComments(subreddit!!, id!!)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == android.R.id.home) {
+            onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override var mPresenter: DetailsPresenter = DetailsPresenter()
