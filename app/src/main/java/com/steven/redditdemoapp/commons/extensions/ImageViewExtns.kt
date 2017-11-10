@@ -14,7 +14,7 @@ fun ImageView.loadImg(imageUrl: String) {
 
     if (TextUtils.isEmpty(imageUrl)) {
         Glide.with(context)
-                .load(R.mipmap.ic_launcher)
+                .load(R.drawable.ic_small_placeholder)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(this)
     } else {

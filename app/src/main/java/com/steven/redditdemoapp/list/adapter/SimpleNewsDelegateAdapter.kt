@@ -34,7 +34,11 @@ class SimpleNewsDelegateAdapter : ViewTypeDelegateAdapter {
 
         fun bind(item: NewsItem) = with(itemView) {
             tv_score.text = item.score.getDisplayScore(item.score)
-            iv_thumbnail.loadImg(item.thumbnail)
+            if (item.thumbnail == "" || item.thumbnail == "default")
+                iv_thumbnail.setBackgroundResource(R.drawable.ic_small_placeholder)
+            else
+                iv_thumbnail.loadImg(item.thumbnail)
+
             tv_desc.text = item.title
             tv_author.text = "submitted by ${item.author}"
 
