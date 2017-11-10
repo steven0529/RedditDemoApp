@@ -1,5 +1,6 @@
 package com.chuck.keddit.news.adapter
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.chuck.keddit.commons.ViewType
@@ -9,6 +10,7 @@ import com.steven.redditdemoapp.commons.extensions.getDisplayScore
 import com.steven.redditdemoapp.commons.extensions.getRelativeTime
 import com.steven.redditdemoapp.commons.extensions.inflate
 import com.steven.redditdemoapp.commons.extensions.loadImg
+import com.steven.redditdemoapp.detail.DetailsActivity
 import com.steven.redditdemoapp.model.NewsItem
 import kotlinx.android.synthetic.main.item_news.view.*
 
@@ -42,6 +44,13 @@ class SimpleNewsDelegateAdapter : ViewTypeDelegateAdapter {
                 tv_comments.text = "${item.numComments} comments"
 
             tv_relative_time.text = item.created.getRelativeTime()
+
+            itemView.setOnClickListener({
+                val intent = Intent(context, DetailsActivity::class.java)
+                intent.putExtra(DetailsActivity.EXTRA_SUBREDDIT, item.subreddit)
+                intent.putExtra(DetailsActivity.EXTRA_ARTICLE_ID, item.id)
+                context.startActivity(intent)
+            })
         }
     }
 }

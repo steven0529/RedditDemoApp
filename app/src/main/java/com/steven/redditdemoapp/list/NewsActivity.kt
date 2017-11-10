@@ -32,7 +32,7 @@ class NewsActivity : BaseMvpActivity<NewsView, NewsPresenter>(), NewsView {
         var llManager = LinearLayoutManager(this)
         rvPosts.layoutManager = llManager;
         rvPosts.addOnScrollListener(LoadMoreListener( {loadMoreNews() }, llManager))
-        var itemDecoration: DividerItemDecoration = DividerItemDecoration(this, llManager.orientation)
+        var itemDecoration = DividerItemDecoration(this, llManager.orientation)
         itemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.list_divider))
         rvPosts.addItemDecoration(itemDecoration)
     }

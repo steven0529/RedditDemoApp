@@ -13,6 +13,11 @@ import kotlinx.android.synthetic.main.activity_detail.*
  */
 class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), DetailsView {
 
+    companion object {
+        val EXTRA_SUBREDDIT = "subreddit"
+        val EXTRA_ARTICLE_ID = "article_id"
+    }
+
     private val rvComments by lazy {
         rv_comments
     }
