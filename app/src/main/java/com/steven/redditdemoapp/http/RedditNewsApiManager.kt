@@ -48,7 +48,7 @@ object RedditNewsApiManager {
                 .build()
     }
 
-    private fun createMoshiConverter(): MoshiConverterFactory = MoshiConverterFactory.create()
+    private fun createMoshiConverter(): MoshiConverterFactory = MoshiConverterFactory.create().asLenient()
 
     private fun initServices(retrofit: Retrofit) {
         redditApi = retrofit.create(RedditApi::class.java)
@@ -60,7 +60,7 @@ object RedditNewsApiManager {
                 .observeOn(AndroidSchedulers.mainThread())!!
     }
 
-    fun getComments(subreddit: String, id: String): Observable<NewsBaseResponse> {
+    fun getComments(subreddit: String, id: String): Observable<List<NewsBaseResponse>> {
         return redditApi.getComments(subreddit, id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())!!

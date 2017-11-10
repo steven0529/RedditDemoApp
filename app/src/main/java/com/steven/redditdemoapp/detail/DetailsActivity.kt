@@ -35,10 +35,8 @@ class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), Details
     override var mPresenter: DetailsPresenter = DetailsPresenter()
 
     override fun displayDetail(newsItem: NewsItem) {
-
     }
 
     override fun displayComments(commentList: CommentList) {
-
     }
 }

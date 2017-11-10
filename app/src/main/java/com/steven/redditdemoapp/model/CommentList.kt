@@ -6,4 +6,4 @@ package com.steven.redditdemoapp.model
 data class CommentList(
         val after: String,
         val before: String,
-        val news: List<CommentItem>)
+        val data: List<CommentItem>)

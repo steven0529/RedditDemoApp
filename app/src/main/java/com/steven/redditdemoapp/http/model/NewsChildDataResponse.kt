@@ -7,12 +7,12 @@ package com.steven.redditdemoapp.http.model
 class NewsChildDataResponse(
         val id: String,
         val author: String,
-        val title: String,
-        val num_comments: Int,
+        val title: String?,
+        val num_comments: Int?,
         val created: Long,
-        val thumbnail: String,
-        val url: String,
-        val score: Int,
-        val subreddit: String,
-        val body: String
+        val thumbnail: String?,
+        val url: String?,
+        val score: Int?,
+        val subreddit: String?,
+        val body: String?
 )

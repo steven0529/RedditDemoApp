@@ -15,7 +15,7 @@ interface RedditApi {
     @GET("/top.json")
     fun getTopArticles(@Query("after") after: String, @Query("limit") limit: String) : Observable<NewsBaseResponse>
 
-    @GET("/r/{subreddit}/comments/{id}")
-    fun getComments(@Path("subreddit") subreddit: String, @Path("id") id: String) : Observable<NewsBaseResponse>
+    @GET("/r/{subreddit}/comments/{id}.json")
+    fun getComments(@Path("subreddit") subreddit: String, @Path("id") id: String) : Observable<List<NewsBaseResponse>>
 
 }
