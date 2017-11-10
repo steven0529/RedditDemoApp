@@ -69,10 +69,7 @@ class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), Details
         iv_divider.visibility = View.VISIBLE
         tv_score.text = newsItem.score.getDisplayScore(newsItem.score)
         tv_desc.text = newsItem.title
-        if (newsItem.numComments == 1)
-            tv_comments.text = "${newsItem.numComments} comment"
-        else
-            tv_comments.text = "${newsItem.numComments} comments"
+        tv_subreddit.text = "/r/${subreddit}"
         tv_submitted_by.text = "submitted ${newsItem.created.getRelativeTime()} by ${newsItem.author}"
 
         if (newsItem.bigImageUrl == "")
