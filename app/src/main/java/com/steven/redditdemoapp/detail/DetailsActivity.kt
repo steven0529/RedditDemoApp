@@ -3,6 +3,9 @@ package com.steven.redditdemoapp.detail
 import android.os.Bundle
 import com.steven.redditdemoapp.R
 import com.steven.redditdemoapp.base.BaseMvpActivity
+import com.steven.redditdemoapp.commons.extensions.getDisplayScore
+import com.steven.redditdemoapp.commons.extensions.getRelativeTime
+import com.steven.redditdemoapp.commons.extensions.loadImg
 import com.steven.redditdemoapp.model.CommentList
 import com.steven.redditdemoapp.model.NewsItem
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -44,7 +47,14 @@ class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), Details
     override var mPresenter: DetailsPresenter = DetailsPresenter()
 
     override fun displayDetail(newsItem: NewsItem) {
-
+        tv_score.text = newsItem.score.getDisplayScore(newsItem.score)
+        tv_desc.text = newsItem.title
+        if (newsItem.numComments == 1)
+            tv_comments.text = "${newsItem.numComments} comment"
+        else
+            tv_comments.text = "${newsItem.numComments} comments"
+        tv_submitted_by.text = "submitted ${newsItem.created.getRelativeTime()} by ${newsItem.author}"
+        iv_thumbnail.loadImg(newsItem.thumbnail)
     }
 
     override fun displayComments(commentList: CommentList) {
