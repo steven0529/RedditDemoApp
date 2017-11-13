@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Reddit Demo App</string>
+    <string name="hot">Hot</string>
+    <string name="new_posts">New</string>
+    <string name="random">Random</string>
     <string name="created_by">Created by</string>
     <string name="author">Steven Francis Reyes</string>
     <string name="failed_to_load_posts">Failed to load posts</string>
