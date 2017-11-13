@@ -18,35 +18,39 @@ class DetailsPresenter : BaseMvpPresenterImpl<DetailsView>() {
         RedditNewsApiManager.getComments(subreddit, id)
                 .subscribe({ redditArrayResponse: List<NewsBaseResponse> ->
                     for (redditResponse in redditArrayResponse) {
-                        if (redditResponse.data.children[0].kind == PrefixType.LINK) {
-                            val item = redditArrayResponse[0].data.children[0].data
-                            var imageUrl = ""
+                        if (!redditResponse.data.children.isEmpty()) {
+                            if (redditResponse.data.children[0].kind == PrefixType.LINK) {
+                                val item = redditArrayResponse[0].data.children[0].data
+                                var imageUrl = ""
 
-                            if (item.preview != null && item.preview.images[0].source.url != null)
-                                imageUrl = item.preview.images[0].source.url
+                                if (item.preview != null && item.preview.images[0].source.url != null)
+                                    imageUrl = item.preview.images[0].source.url
 
-                            val newsItem = NewsItem(item.author, item.title!!, item.num_comments!!,
-                                    item.created, item.thumbnail!!, item.url!!, item.score!!,
-                                    item.subreddit!!, item.id, imageUrl)
-                            mView?.displayDetail(newsItem)
-                        } else if (redditResponse.data.children[0].kind == PrefixType.COMMENTS) {
-                            var comments: MutableList<CommentItem> = mutableListOf()
+                                val newsItem = NewsItem(item.author, item.title!!, item.num_comments!!,
+                                        item.created, item.thumbnail!!, item.url!!, item.score!!,
+                                        item.subreddit!!, item.id, imageUrl)
+                                mView?.displayDetail(newsItem)
+                            } else if (redditResponse.data.children[0].kind == PrefixType.COMMENTS) {
+                                var comments: MutableList<CommentItem> = mutableListOf()
 
-                            for (commentItem in redditArrayResponse[1].data.children) {
-                                if (commentItem.kind == PrefixType.COMMENTS) {
-                                    var newsCommentItem = if (commentItem.data.replies?.data != null) {
-                                        parseReplyItem(commentItem)
-                                    } else {
-                                        CommentItem(commentItem.data.author, commentItem.data.body!!,
-                                                commentItem.data.created, commentItem.data.score)
+                                for (commentItem in redditArrayResponse[1].data.children) {
+                                    if (commentItem.kind == PrefixType.COMMENTS) {
+                                        var newsCommentItem = if (commentItem.data.replies?.data != null) {
+                                            parseReplyItem(commentItem)
+                                        } else {
+                                            CommentItem(commentItem.data.author, commentItem.data.body!!,
+                                                    commentItem.data.created, commentItem.data.score)
+                                        }
+                                        comments.add(newsCommentItem)
                                     }
-                                    comments.add(newsCommentItem)
                                 }
+                                val commentsList = CommentList(redditArrayResponse[1].data.after ?: "",
+                                        redditArrayResponse[1].data.before ?: "",
+                                        comments)
+                                mView?.displayComments(commentsList)
                             }
-                            val commentsList = CommentList(redditArrayResponse[1].data.after ?: "",
-                                    redditArrayResponse[1].data.before ?: "",
-                                    comments)
-                            mView?.displayComments(commentsList)
+                        } else {
+                            mView?.displayNoComments()
                         }
                     }
                 })
