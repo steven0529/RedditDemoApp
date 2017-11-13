@@ -25,6 +25,16 @@
             tools:ignore="SmallSp" />
 
         <TextView
+            android:id="@+id/tv_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_author"
+            android:layout_marginLeft="5dp"
+            android:textColor="#343434"
+            android:textSize="14sp"
+            tools:ignore="SmallSp" />
+
+        <TextView
             android:id="@+id/tv_relative_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

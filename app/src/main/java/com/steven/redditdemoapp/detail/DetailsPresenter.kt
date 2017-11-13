@@ -38,7 +38,7 @@ class DetailsPresenter : BaseMvpPresenterImpl<DetailsView>() {
                                         parseReplyItem(commentItem)
                                     } else {
                                         CommentItem(commentItem.data.author, commentItem.data.body!!,
-                                                commentItem.data.created)
+                                                commentItem.data.created, commentItem.data.score)
                                     }
                                     comments.add(newsCommentItem)
                                 }
@@ -66,17 +66,17 @@ class DetailsPresenter : BaseMvpPresenterImpl<DetailsView>() {
                     newsCommentItem = parseReplyItem(commentItem)
                 } else {
                     newsCommentItem = CommentItem(commentItem.data.author, commentItem.data.body!!,
-                            commentItem.data.created)
+                            commentItem.data.created, commentItem.data.score)
                 }
                 comments.add(newsCommentItem)
             }
         }
         if (comments.isEmpty())
             return CommentItem(replyItem.data.author, replyItem.data.body!!,
-                    replyItem.data.created)
+                    replyItem.data.created, replyItem.data.score)
         else
             return CommentItem(replyItem.data.author, replyItem.data.body!!,
-                    replyItem.data.created, comments)
+                    replyItem.data.created, replyItem.data.score, comments)
     }
 
 }

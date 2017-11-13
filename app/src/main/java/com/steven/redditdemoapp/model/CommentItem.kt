@@ -7,5 +7,6 @@ data class CommentItem(
         val author: String = "",
         val body: String = "",
         val created: Long = System.currentTimeMillis(),
+        val points: Int?,
         val replies: MutableList<CommentItem> = mutableListOf()
 )

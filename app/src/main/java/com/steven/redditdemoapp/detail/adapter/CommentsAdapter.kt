@@ -1,7 +1,5 @@
 package com.steven.redditdemoapp.detail.adapter
 
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -42,9 +40,12 @@ class CommentsAdapter(private val comments: MutableList<CommentItem>)
         fun bind(item: CommentItem) = with(itemView) {
             tv_body.text = item.body
             tv_author.text = item.author
+            if (item.points == 1)
+                tv_points.text = "${item.points} point"
+            else
+                tv_points.text = "${item.points} points"
             tv_relative_time.text = item.created.getRelativeTime()
             if (!item.replies.isEmpty()) {
-
                 rv_replies.adapter = CommentsAdapter(item.replies)
 
                 rv_replies.setHasFixedSize(true) // use this setting to improve performance
