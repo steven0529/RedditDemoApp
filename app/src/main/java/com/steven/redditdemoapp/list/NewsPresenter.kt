@@ -11,28 +11,53 @@ import com.steven.redditdemoapp.model.NewsList
  */
 class NewsPresenter : BaseMvpPresenterImpl<NewsView>() {
 
-    fun loadNews(after: String, limit: String) {
-        RedditNewsApiManager.getNews(after, limit)
+    fun loadHotNews(after: String, limit: String) {
+        RedditNewsApiManager.getHotArticles(after, limit)
                 .subscribe({ redditResponse: NewsBaseResponse? ->
-                    redditResponse?.let {
-                        val news = redditResponse.data.children.map {
-                            val item = it.data
-                            NewsItem(item.author, item.title!!, item.num_comments!!,
-                                    item.created, item.thumbnail!!, item.url!!, item.score!!,
-                                    item.subreddit!!, item.id, "")
-                        }
-
-                        val redditNews = NewsList(redditResponse.data.after ?: "",
-                                redditResponse.data.before ?: "",
-                                news)
-
-                        mView?.displayNewsList(redditNews)
-
-                    }
+                    parseNews(redditResponse)
                 })
                 { throwable ->
                     mView?.showError()
                     throwable.printStackTrace()
                 }
+    }
+
+    fun loadNewNews(after: String, limit: String) {
+        RedditNewsApiManager.getNewArticles(after, limit)
+                .subscribe({ redditResponse: NewsBaseResponse? ->
+                    parseNews(redditResponse)
+                })
+                { throwable ->
+                    mView?.showError()
+                    throwable.printStackTrace()
+                }
+    }
+
+    fun loadRandomNews(after: String, limit: String) {
+        RedditNewsApiManager.getRandomArticles(after, limit)
+                .subscribe({ redditResponse: NewsBaseResponse? ->
+                    parseNews(redditResponse)
+                })
+                { throwable ->
+                    mView?.showError()
+                    throwable.printStackTrace()
+                }
+    }
+
+    private fun parseNews(redditResponse: NewsBaseResponse?) {
+        redditResponse?.let {
+            val news = redditResponse.data.children.map {
+                val item = it.data
+                NewsItem(item.author, item.title!!, item.num_comments!!,
+                        item.created, item.thumbnail!!, item.url!!, item.score!!,
+                        item.subreddit!!, item.id, "")
+            }
+
+            val redditNews = NewsList(redditResponse.data.after ?: "",
+                    redditResponse.data.before ?: "",
+                    news)
+
+            mView?.displayNewsList(redditNews)
+        }
     }
 }

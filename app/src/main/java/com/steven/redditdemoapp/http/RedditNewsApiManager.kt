@@ -58,8 +58,20 @@ object RedditNewsApiManager {
         redditApi = retrofit.create(RedditApi::class.java)
     }
 
-    fun getNews(after: String, limit: String): Observable<NewsBaseResponse> {
+    fun getHotArticles(after: String, limit: String): Observable<NewsBaseResponse> {
         return redditApi.getTopArticles(after, limit)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())!!
+    }
+
+    fun getNewArticles(after: String, limit: String): Observable<NewsBaseResponse> {
+        return redditApi.getNewArticles(after, limit)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())!!
+    }
+
+    fun getRandomArticles(after: String, limit: String): Observable<NewsBaseResponse> {
+        return redditApi.getRandomArticles(after, limit)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())!!
     }
