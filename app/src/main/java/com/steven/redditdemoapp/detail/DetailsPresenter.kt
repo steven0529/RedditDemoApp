@@ -4,6 +4,7 @@ import client.yalantis.com.githubclient.mvp.BaseMvpPresenterImpl
 import com.steven.redditdemoapp.commons.PrefixType
 import com.steven.redditdemoapp.http.RedditNewsApiManager
 import com.steven.redditdemoapp.http.model.NewsBaseResponse
+import com.steven.redditdemoapp.http.model.NewsChildrenResponse
 import com.steven.redditdemoapp.model.CommentItem
 import com.steven.redditdemoapp.model.CommentList
 import com.steven.redditdemoapp.model.NewsItem
@@ -33,9 +34,13 @@ class DetailsPresenter : BaseMvpPresenterImpl<DetailsView>() {
 
                             for (commentItem in redditArrayResponse[1].data.children) {
                                 if (commentItem.kind == PrefixType.COMMENTS) {
-                                    var commentItem = CommentItem(commentItem.data.author, commentItem.data.body!!,
-                                            commentItem.data.created)
-                                    comments.add(commentItem)
+                                    var newsCommentItem = if (commentItem.data.replies?.data != null) {
+                                        parseReplyItem(commentItem)
+                                    } else {
+                                        CommentItem(commentItem.data.author, commentItem.data.body!!,
+                                                commentItem.data.created)
+                                    }
+                                    comments.add(newsCommentItem)
                                 }
                             }
                             val commentsList = CommentList(redditArrayResponse[1].data.after ?: "",
@@ -50,4 +55,28 @@ class DetailsPresenter : BaseMvpPresenterImpl<DetailsView>() {
                     throwable.printStackTrace()
                 }
     }
+
+    fun parseReplyItem(replyItem: NewsChildrenResponse): CommentItem {
+        replyItem.data.replies
+        var comments: MutableList<CommentItem> = mutableListOf()
+        for (commentItem in replyItem.data.replies?.data!!.children) {
+            if (commentItem.kind == PrefixType.COMMENTS) {
+                var newsCommentItem: CommentItem
+                if (commentItem.data.replies?.data != null) {
+                    newsCommentItem = parseReplyItem(commentItem)
+                } else {
+                    newsCommentItem = CommentItem(commentItem.data.author, commentItem.data.body!!,
+                            commentItem.data.created)
+                }
+                comments.add(newsCommentItem)
+            }
+        }
+        if (comments.isEmpty())
+            return CommentItem(replyItem.data.author, replyItem.data.body!!,
+                    replyItem.data.created)
+        else
+            return CommentItem(replyItem.data.author, replyItem.data.body!!,
+                    replyItem.data.created, comments)
+    }
+
 }

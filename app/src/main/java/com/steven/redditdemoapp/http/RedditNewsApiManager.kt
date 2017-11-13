@@ -2,6 +2,7 @@ package com.steven.redditdemoapp.http
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.steven.redditdemoapp.http.model.NewsBaseResponse
+import com.steven.redditdemoapp.http.util.RedditRepliesJsonKeyInterceptor
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -10,6 +11,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+
 
 /**
  * Created by Steven Reyes on 09/11/2017
@@ -29,6 +31,7 @@ object RedditNewsApiManager {
         val interceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
+        val replyInterceptor = RedditRepliesJsonKeyInterceptor()
 
         val client = OkHttpClient.Builder().apply {
             networkInterceptors().add(Interceptor { chain ->
@@ -39,6 +42,7 @@ object RedditNewsApiManager {
                 chain.proceed(request)
             })
             addInterceptor(interceptor)
+            addInterceptor(replyInterceptor)
         }
 
         return Retrofit.Builder().baseUrl(BASE_URL)

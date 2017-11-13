@@ -3,7 +3,7 @@ package client.yalantis.com.githubclient.mvp
 import com.steven.redditdemoapp.base.BaseMvpView
 
 /**
- * Created by andrewkhristyan on 10/2/16.
+ * Created by Steven Reyes on 09/11/2017
  */
 open class BaseMvpPresenterImpl<V : BaseMvpView> : BaseMvpPresenter<V> {
 

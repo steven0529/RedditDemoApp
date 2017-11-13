@@ -6,5 +6,6 @@ package com.steven.redditdemoapp.model
 data class CommentItem(
         val author: String = "",
         val body: String = "",
-        val created: Long = System.currentTimeMillis()
+        val created: Long = System.currentTimeMillis(),
+        val replies: MutableList<CommentItem> = mutableListOf()
 )
