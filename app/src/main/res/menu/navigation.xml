@@ -14,6 +14,6 @@
     <item
         android:id="@+id/navigation_random"
         android:icon="@drawable/ic_random"
-        android:title="@string/random" />
+        android:title="@string/rising" />
 
 </menu>
