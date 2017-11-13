@@ -86,7 +86,7 @@ class DetailsActivity: BaseMvpActivity<DetailsView, DetailsPresenter>(), Details
 
         rvComments.setHasFixedSize(true) // use this setting to improve performance
         var llManager = LinearLayoutManager(this)
-        rvComments.layoutManager = llManager;
+        rvComments.layoutManager = llManager
         var itemDecoration = DividerItemDecoration(this, llManager.orientation)
         itemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.list_divider))
         rvComments.addItemDecoration(itemDecoration)
