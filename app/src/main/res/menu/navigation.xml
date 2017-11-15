@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/navigation_random"
-        android:icon="@drawable/ic_random"
+        android:icon="@drawable/ic_rising"
         android:title="@string/rising" />
 
 </menu>
